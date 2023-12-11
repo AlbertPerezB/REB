@@ -1,0 +1,15 @@
+/Users/jesperlind/Documents/GitHub/REB/afl2/bin/Debug/net7.0/afl2
+/Users/jesperlind/Documents/GitHub/REB/afl2/bin/Debug/net7.0/afl2.deps.json
+/Users/jesperlind/Documents/GitHub/REB/afl2/bin/Debug/net7.0/afl2.runtimeconfig.json
+/Users/jesperlind/Documents/GitHub/REB/afl2/bin/Debug/net7.0/afl2.dll
+/Users/jesperlind/Documents/GitHub/REB/afl2/bin/Debug/net7.0/afl2.pdb
+/Users/jesperlind/Documents/GitHub/REB/afl2/obj/Debug/net7.0/afl2.csproj.AssemblyReference.cache
+/Users/jesperlind/Documents/GitHub/REB/afl2/obj/Debug/net7.0/afl2.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jesperlind/Documents/GitHub/REB/afl2/obj/Debug/net7.0/afl2.AssemblyInfoInputs.cache
+/Users/jesperlind/Documents/GitHub/REB/afl2/obj/Debug/net7.0/afl2.AssemblyInfo.cs
+/Users/jesperlind/Documents/GitHub/REB/afl2/obj/Debug/net7.0/afl2.csproj.CoreCompileInputs.cache
+/Users/jesperlind/Documents/GitHub/REB/afl2/obj/Debug/net7.0/afl2.dll
+/Users/jesperlind/Documents/GitHub/REB/afl2/obj/Debug/net7.0/refint/afl2.dll
+/Users/jesperlind/Documents/GitHub/REB/afl2/obj/Debug/net7.0/afl2.pdb
+/Users/jesperlind/Documents/GitHub/REB/afl2/obj/Debug/net7.0/afl2.genruntimeconfig.cache
+/Users/jesperlind/Documents/GitHub/REB/afl2/obj/Debug/net7.0/ref/afl2.dll
