@@ -17,7 +17,7 @@ public class DCRGraph {
     private Dictionary<string, HashSet<string>> includes_To = new Dictionary<string, HashSet<string>>();
     
     // Marking
-    public DCRMarking marking;
+    public DCRMarking? marking;
 
 
 
