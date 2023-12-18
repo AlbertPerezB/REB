@@ -20,7 +20,7 @@ public class XMLreader {
     }
   
     // Method for reading events from XML document
-    public HashSet<string> ReadMappings() {
+    public HashSet<string> ReadMappingsAndEvents() {
         HashSet<string> activities = new HashSet<string>();
         XmlNodeList? event_nodes = xml_doc.SelectNodes("//labelMapping");
         if (event_nodes != null) {
@@ -43,34 +43,31 @@ public class XMLreader {
         return activities;
     }
 
+    // Fills out dictionary to map group members to groups.
     public void ReadGroups() {
         XmlNodeList? group_nodes = xml_doc.SelectNodes("//event[@type='subprocess']");
         if (group_nodes != null) {
             foreach (XmlNode group_node in group_nodes) {
-                XmlAttribute? group_id = group_node.Attributes["id"];
-                group_name = label_mapping[group_id.Value];
-                XmlNodeList? event_nodes = group_node.SelectNodes("//event");
-                foreach (XmlNode event_node in event_nodes) {
-                
-                XmlAttribute? id = event_node.Attributes["id"];
+                HashSet<string> events = new(); // Placeholder for group's events
 
-                }
-
-                if (name != null && id != null) {
-                    string activity_name = name.Value;
-                    string activity_id = id.Value;
-                    
-                    if (!groups.ContainsKey(activity_name)) { 
-                        //conditions_For[source_name] = new HashSet<string> { label_mapping[target.Value] };
-                        HashSet<string> target_name = new();
-                        target_name.Add(label_mapping[target.Value]);
-                        conditions_For.Add(source_name, target_name);
-                    } else { // If source already exists, add target name to HashSet in dictionary.
-                        string target_name = label_mapping[target.Value];
-                        conditions_For[source_name].Add(target_name);
+                XmlAttribute? group_id = group_node.Attributes?["id"]; 
+                // Extract name of group
+                if (group_id != null) {
+                    string group_name = label_mapping[group_id.Value];
+                    // Iterate over each event in the group
+                    XmlNodeList? event_nodes = group_node.SelectNodes("//event");
+                    if (event_nodes != null) {
+                        foreach (XmlNode event_node in event_nodes) {
+                            // Get name of each sub event
+                            XmlAttribute? event_id = event_node.Attributes?["id"];
+                            if (event_id != null) {
+                            string event_name = label_mapping[event_id.Value];
+                            events.Add(event_name);
+                            }
+                        }
                     }
+                groups.Add(group_name, events);
                 }
-            }
             }
         }
     }
@@ -266,14 +263,38 @@ public class XMLreader {
         return markings;
     }
 
-    public void ProcessXML (){
-        ReadMappings();
+    // Call the other methods and cleanup groups
+    public void ProcessXML () {
+        HashSet<string> events = ReadMappingsAndEvents();
         ReadGroups();
-        ReadConditions();
-        ReadMilestones();
-        ReadExcludes();
-        ReadIncludes();
-        ReadResponses();
-        ReadMarkings();
+        Dictionary<string, HashSet<string>> conditions_to = ReadConditions();
+        Dictionary<string, HashSet<string>> milestones_to = ReadMilestones();
+        Dictionary<string, HashSet<string>> excludes_to = ReadExcludes();
+        Dictionary<string, HashSet<string>> includes_To = ReadIncludes();
+        Dictionary<string, HashSet<string>> responses_To = ReadResponses();
+        DCRMarking markings = ReadMarkings();
+
+        // In the set of events, delete the ones that are actually groups.
+        events = events.Where(activity => !groups.ContainsKey(activity)).ToHashSet();
+        
+        // Iterate through the original conditions_to dictionary
+        Dictionary<string, HashSet<string>> clean_Conditions_To = new();
+        foreach (var kvp in conditions_to) {
+            string key = kvp.Key;
+
+            // Check if the key is a group
+            if (groups.ContainsKey(key)) {
+                // If it's a group, create separate entries for each member of the group
+                foreach (var groupMember in groups[key]) {
+                    if (!clean_Conditions_To.ContainsKey(groupMember)) {
+                        clean_Conditions_To.Add(groupMember, kvp.Value);
+                    }
+                    clean_Conditions_To[groupMember].UnionWith(kvp.Value);
+                }
+            } else {
+                // If it's not a group, use the original dependencies
+                clean_Conditions_To[key] = kvp.Value;
+            }
+        }
     }
 }
