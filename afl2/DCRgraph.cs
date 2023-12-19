@@ -6,18 +6,18 @@ namespace DCR;
 
 public class DCRGraph {
     // Events
-    protected HashSet<string> events = new HashSet<string>();
+    public HashSet<string> events = new HashSet<string>();
         
 
     // Relations
-    private Dictionary<string, HashSet<string>> conditions_For = new Dictionary<string, HashSet<string>>();
-    private Dictionary<string, HashSet<string>> milestones_For = new Dictionary<string, HashSet<string>>();
-    private Dictionary<string, HashSet<string>> responses_To = new Dictionary<string, HashSet<string>>();
-    private Dictionary<string, HashSet<string>> excludes_To = new Dictionary<string, HashSet<string>>();
-    private Dictionary<string, HashSet<string>> includes_To = new Dictionary<string, HashSet<string>>();
+    public Dictionary<string, HashSet<string>> conditions_For = new();
+    public Dictionary<string, HashSet<string>> milestones_For = new();
+    public Dictionary<string, HashSet<string>> responses_To = new();
+    public Dictionary<string, HashSet<string>> excludes_To = new();
+    public Dictionary<string, HashSet<string>> includes_To = new();
     
     // Marking
-    public DCRMarking? marking;
+    public DCRMarking marking = new();
 
 
 

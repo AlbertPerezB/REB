@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xIsEu/cgmlOAMW5nSCArR0tUb/QKMbG6nEjQlHSH37je1eSyLEOojJYAAhUvu521QVUcR+FjD4TH9Q1gchaXoA==",
+  "dgSpecHash": "GM5V04PF9bhDvFee9KDqK5aUUihYObiIY/bj7X8w5DpARinQyv/OGy83tFbzL7jmA+35FbqUK4v4yhnwsfcsSA==",
   "success": true,
-  "projectFilePath": "/Users/jesperlind/Documents/GitHub/REB/afl2/afl2.csproj",
+  "projectFilePath": "C:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\afl2.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
