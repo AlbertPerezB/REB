@@ -3,12 +3,15 @@ namespace DCR;
 using System;
 using System.Xml;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Diagnostics.Tracing;
+using System.Collections.Concurrent;
 
 public class XMLreader {
     // XML document we read from later on. Loaded from file in constructor.
     private readonly XmlDocument xml_doc = new();
     // Dictionary mapping event label to event id.
-    public Dictionary<string, string> label_mapping = new();
+    private Dictionary<string, string> label_mapping = new();
     public Dictionary<string, HashSet<string>> groups = new();
 
     // Constructor. Loads xml file from path
@@ -16,17 +19,18 @@ public class XMLreader {
         try {
             xml_doc.Load(xml_path);
         }
-        catch (Exception ex) {Console.WriteLine ("Error: " + ex.Message);}
+        catch (Exception ex) {
+            Console.WriteLine ("Error: " + ex.Message);
+        }
     }
   
     // Method for reading events from XML document
-    public HashSet<string> ReadMappingsAndEvents() {
-        HashSet<string> activities = new HashSet<string>();
+    private void ReadMappingsAndEvents(HashSet<string> activities) {
+        HashSet<string> events = new HashSet<string>(); // Placeholder 
         XmlNodeList? event_nodes = xml_doc.SelectNodes("//labelMapping");
         if (event_nodes != null) {
             foreach (XmlNode event_node in event_nodes) {
                     if (event_node.Attributes != null) {
-                        //Console.WriteLine(event_node.Attributes["labelId"].GetType());
                         XmlAttribute? name = event_node.Attributes["labelId"];
                         XmlAttribute? id = event_node.Attributes["eventId"];
                         if (name != null && id != null) {
@@ -40,261 +44,127 @@ public class XMLreader {
                     }
             }
         }
-        return activities;
     }
 
-    // Fills out dictionary to map group members to groups.
-    public void ReadGroups() {
+    // Fills out dictionary to map groups to group members.
+    private void ReadGroups() {
         XmlNodeList? group_nodes = xml_doc.SelectNodes("//event[@type='subprocess']");
         if (group_nodes != null) {
             foreach (XmlNode group_node in group_nodes) {
                 HashSet<string> events = new(); // Placeholder for group's events
-
-                XmlAttribute? group_id = group_node.Attributes?["id"]; 
+                
                 // Extract name of group
+                XmlAttribute? group_id = group_node.Attributes?["id"]; 
                 if (group_id != null) {
                     string group_name = label_mapping[group_id.Value];
+
                     // Iterate over each event in the group
-                    XmlNodeList? event_nodes = group_node.SelectNodes("//event");
+                    XmlNodeList? event_nodes = group_node.ChildNodes;
                     if (event_nodes != null) {
                         foreach (XmlNode event_node in event_nodes) {
                             // Get name of each sub event
                             XmlAttribute? event_id = event_node.Attributes?["id"];
                             if (event_id != null) {
-                            string event_name = label_mapping[event_id.Value];
-                            events.Add(event_name);
+                                string event_name = label_mapping[event_id.Value];
+                                events.Add(event_name);
                             }
                         }
                     }
                 groups.Add(group_name, events);
                 }
             }
+        } else {
+            Console.WriteLine("No groups");
         }
     }
     
-    // Method for reading conditions from XML document
-    public Dictionary<string, HashSet<string>> ReadConditions() {
-        Dictionary<string, HashSet<string>> conditions_For = new();
-        XmlNodeList? condition_nodes = xml_doc.SelectNodes("//condition");
-        if (condition_nodes != null) {
-            foreach (XmlNode condition_node in condition_nodes) {
-                    if (condition_node.Attributes != null) {
-                        XmlAttribute? source = condition_node.Attributes["sourceId"];
-                        XmlAttribute? target = condition_node.Attributes["targetId"];
+    // Method for adding a relation to a dictionary checking if the source is already in dictionary.
+    private void AddRelation(Dictionary<string, HashSet<string>> result_dict, string source_name, 
+                        string target_name) {
+        // If the source is not already in dictionary, create <string, hashset> entry.
+        if (!result_dict.ContainsKey(source_name)) { 
+            HashSet<string> targets = new() {target_name};
+            result_dict.Add(source_name, targets);
+        } else { // If source already exists, add target name to HashSet in dictionary.
+            result_dict[source_name].Add(target_name);
+        }
+    }
+
+    // Method for reading relations from XML document and adding it do a given dictionary
+    private void ReadRelation(
+                    Dictionary<string, HashSet<string>> relation_dict, string node_address) {
+        XmlNodeList? relation_nodes = xml_doc.SelectNodes(node_address);
+        if (relation_nodes != null) {
+            foreach (XmlNode relation_node in relation_nodes) {
+                    if (relation_node.Attributes != null) {
+                        XmlAttribute? source = relation_node.Attributes["sourceId"];
+                        XmlAttribute? target = relation_node.Attributes["targetId"];
                         if (source != null && target != null) {
                             string source_name = label_mapping[source.Value];
-
-                            // If the source is not already in dictionary, create <string, hashset> entry.
-                            if (!conditions_For.ContainsKey(source_name)) { 
-                                //conditions_For[source_name] = new HashSet<string> { label_mapping[target.Value] };
-                                HashSet<string> target_name = new();
-                                target_name.Add(label_mapping[target.Value]);
-                                conditions_For.Add(source_name, target_name);
-                            } else { // If source already exists, add target name to HashSet in dictionary.
-                                string target_name = label_mapping[target.Value];
-                                conditions_For[source_name].Add(target_name);
+                            string target_name = label_mapping[target.Value];
+                            // If the source is a group head
+                            if (groups.ContainsKey(source_name)) {
+                                Console.WriteLine("source is group");
+                                // Add relation for each group member
+                                foreach (string group_member in groups[source_name]) {
+                                    AddRelation(relation_dict, group_member, target_name);
+                                }
+                            } else if (groups.ContainsKey(target_name)) {
+                                    foreach (string group_member in groups[target_name]) {
+                                        AddRelation(relation_dict, source_name, group_member);
+                                    }
+                            } else {
+                                AddRelation(relation_dict, source_name, target_name);
                             }
                         }
                     }
             }
+        } else {
+            Console.WriteLine("No nodes found at {node_address}");
         }
-        return conditions_For;
     }
 
-    // Method for reading milestones from XML document
-    public Dictionary<string, HashSet<string>> ReadMilestones() {
-        Dictionary<string, HashSet<string>> milestones_For = new();
-        XmlNodeList? milestone_nodes = xml_doc.SelectNodes("//milestone");
-        if (milestone_nodes != null) {
-            foreach (XmlNode milestone_node in milestone_nodes) {
-                    if (milestone_node.Attributes != null) {
-                        XmlAttribute? source = milestone_node.Attributes["sourceId"];
-                        XmlAttribute? target = milestone_node.Attributes["targetId"];
-                        if (source != null && target != null) {
-                            string source_name = label_mapping[source.Value];
-
-                            // If the source is not already in dictionary, create <string, hashset> entry.
-                            if (!milestones_For.ContainsKey(source_name)) { 
-                                HashSet<string> target_name = new();
-                                target_name.Add(label_mapping[target.Value]);
-                                milestones_For.Add(source_name, target_name);
-                            } else { // If source already exists, add target name to HashSet in dictionary.
-                                string target_name = label_mapping[target.Value];
-                                milestones_For[source_name].Add(target_name);
-                            }
+    // Add to markings to given HashShet
+    private void AddMarking (HashSet<string> marking, string node_address){
+        XmlNodeList? marked_nodes = xml_doc.SelectNodes(node_address);
+        if (marked_nodes != null) {
+            foreach (XmlNode marked_node in marked_nodes) {
+                    if (marked_node.Attributes != null) {
+                        XmlAttribute? id = marked_node.Attributes["id"];
+                        if (id != null) {
+                            string name = label_mapping[id.Value];
+                            marking.Add(name);
                         }
                     }
             }
         }
-        return milestones_For;
     }
 
-    // Method for reading exclusions from XML document
-    public Dictionary<string, HashSet<string>> ReadExcludes() {
-        Dictionary<string, HashSet<string>> excludes_To = new();
-        XmlNodeList? exclusion_nodes = xml_doc.SelectNodes("//exclude");
-        if (exclusion_nodes != null) {
-            foreach (XmlNode exclusion_node in exclusion_nodes) {
-                    if (exclusion_node.Attributes != null) {
-                        XmlAttribute? source = exclusion_node.Attributes["sourceId"];
-                        XmlAttribute? target = exclusion_node.Attributes["targetId"];
-                        if (source != null && target != null) {
-                            string source_name = label_mapping[source.Value];
 
-                            // If the source is not already in dictionary, create <string, hashset> entry.
-                            if (!excludes_To.ContainsKey(source_name)) { 
-                                //conditions_For[source_name] = new HashSet<string> { label_mapping[target.Value] };
-                                HashSet<string> target_name = new();
-                                target_name.Add(label_mapping[target.Value]);
-                                excludes_To.Add(source_name, target_name);
-                            } else { // If source already exists, add target name to HashSet in dictionary.
-                                string target_name = label_mapping[target.Value];
-                                excludes_To[source_name].Add(target_name);
-                            }
-                        }
-                    }
-            }
-        }
-        return excludes_To;
-    }
-
-    // Method for reading inclusions from XML document
-    public Dictionary<string, HashSet<string>> ReadIncludes() {
-        Dictionary<string, HashSet<string>> includes_To = new();
-        XmlNodeList? inclusion_nodes = xml_doc.SelectNodes("//include");
-        if (inclusion_nodes != null) {
-            foreach (XmlNode inclusion_node in inclusion_nodes) {
-                    if (inclusion_node.Attributes != null) {
-                        XmlAttribute? source = inclusion_node.Attributes["sourceId"];
-                        XmlAttribute? target = inclusion_node.Attributes["targetId"];
-                        if (source != null && target != null) {
-                            string source_name = label_mapping[source.Value];
-
-                            // If the source is not already in dictionary, create <string, hashset> entry.
-                            if (!includes_To.ContainsKey(source_name)) { 
-                                //conditions_For[source_name] = new HashSet<string> { label_mapping[target.Value] };
-                                HashSet<string> target_name = new();
-                                target_name.Add(label_mapping[target.Value]);
-                                includes_To.Add(source_name, target_name);
-                            } else { // If source already exists, add target name to HashSet in dictionary.
-                                string target_name = label_mapping[target.Value];
-                                includes_To[source_name].Add(target_name);
-                            }
-                        }
-                    }
-            }
-        }
-        return includes_To;
-    }
-
-    // Method for reading responses from XML document
-    public Dictionary<string, HashSet<string>> ReadResponses() {
-        Dictionary<string, HashSet<string>> responses_To = new();
-        XmlNodeList? response_nodes = xml_doc.SelectNodes("//response");
-        if (response_nodes != null) {
-            foreach (XmlNode response_node in response_nodes) {
-                    if (response_node.Attributes != null) {
-                        XmlAttribute? source = response_node.Attributes["sourceId"];
-                        XmlAttribute? target = response_node.Attributes["targetId"];
-                        if (source != null && target != null) {
-                            string source_name = label_mapping[source.Value];
-
-                            // If the source is not already in dictionary, create <string, hashset> entry.
-                            if (!responses_To.ContainsKey(source_name)) { 
-                                //conditions_For[source_name] = new HashSet<string> { label_mapping[target.Value] };
-                                HashSet<string> target_name = new();
-                                target_name.Add(label_mapping[target.Value]);
-                                responses_To.Add(source_name, target_name);
-                            } else { // If source already exists, add target name to HashSet in dictionary.
-                                string target_name = label_mapping[target.Value];
-                                responses_To[source_name].Add(target_name);
-                            }
-                        }
-                    }
-            }
-        }
-        return responses_To;
-    }
-
-    // Read the markings of the events from XML document. Returns a DCRMarking object.
-    public DCRMarking ReadMarkings(){
-        DCRMarking markings = new();
+    // Read the markings of the events from XML document and update DCRMarking object.
+    private void ReadMarkings(DCRMarking markings){
         // Access the executed events
-        XmlNodeList? executed_nodes = xml_doc.SelectNodes("//executed/event");
-        if (executed_nodes != null) {
-            foreach (XmlNode executed_node in executed_nodes) {
-                    if (executed_node.Attributes != null) {
-                        XmlAttribute? id = executed_node.Attributes["id"];
-                        if (id != null) {
-                            string name = label_mapping[id.Value];
-                            markings.executed.Add(name);
-                        }
-                    }
-            }
-        }
+        AddMarking(markings.executed, "//executed/event");
+        AddMarking(markings.included, "//included/event");
+        AddMarking(markings.pending, "//pendingResponses/event");
 
-        // Access the included events
-        XmlNodeList? included_nodes = xml_doc.SelectNodes("//included/event");
-        if (included_nodes != null) {
-            foreach (XmlNode included_node in included_nodes) {
-                    if (included_node.Attributes != null) {
-                        XmlAttribute? id = included_node.Attributes["id"];
-                        if (id != null) {
-                            string name = label_mapping[id.Value];
-                            markings.included.Add(name);
-                        }
-                    }
-            }
-        }
-
-        // Access the pending events
-        XmlNodeList? pending_nodes = xml_doc.SelectNodes("//pendingResponses/event");
-        if (pending_nodes != null) {
-            foreach (XmlNode pending_node in pending_nodes) {
-                    if (pending_node.Attributes != null) {
-                        XmlAttribute? id = pending_node.Attributes["id"];
-                        if (id != null) {
-                            string name = label_mapping[id.Value];
-                            markings.pending.Add(name);
-                        }
-                    }
-            }
-        }
-        return markings;
     }
 
-    // Call the other methods and cleanup groups
-    public void ProcessXML () {
-        HashSet<string> events = ReadMappingsAndEvents();
+    // Call the other methods
+    public DCRGraph ProcessXML () {
+        DCRGraph dcr_graph = new();
+        ReadMappingsAndEvents(dcr_graph.events);
         ReadGroups();
-        Dictionary<string, HashSet<string>> conditions_to = ReadConditions();
-        Dictionary<string, HashSet<string>> milestones_to = ReadMilestones();
-        Dictionary<string, HashSet<string>> excludes_to = ReadExcludes();
-        Dictionary<string, HashSet<string>> includes_To = ReadIncludes();
-        Dictionary<string, HashSet<string>> responses_To = ReadResponses();
-        DCRMarking markings = ReadMarkings();
-
         // In the set of events, delete the ones that are actually groups.
-        events = events.Where(activity => !groups.ContainsKey(activity)).ToHashSet();
-        
-        // Iterate through the original conditions_to dictionary
-        Dictionary<string, HashSet<string>> clean_Conditions_To = new();
-        foreach (var kvp in conditions_to) {
-            string key = kvp.Key;
+        dcr_graph.events = dcr_graph.events.Where(activity => !groups.ContainsKey(activity)).ToHashSet();
 
-            // Check if the key is a group
-            if (groups.ContainsKey(key)) {
-                // If it's a group, create separate entries for each member of the group
-                foreach (var groupMember in groups[key]) {
-                    if (!clean_Conditions_To.ContainsKey(groupMember)) {
-                        clean_Conditions_To.Add(groupMember, kvp.Value);
-                    }
-                    clean_Conditions_To[groupMember].UnionWith(kvp.Value);
-                }
-            } else {
-                // If it's not a group, use the original dependencies
-                clean_Conditions_To[key] = kvp.Value;
-            }
-        }
+        ReadRelation(dcr_graph.conditions_For, "//condition");
+        ReadRelation(dcr_graph.milestones_For, "//milestone");
+        ReadRelation(dcr_graph.excludes_To, "//exclude");
+        ReadRelation(dcr_graph.excludes_To, "//exclude");
+        ReadRelation(dcr_graph.includes_To, "//include");
+        ReadRelation(dcr_graph.responses_To, "//response");
+        ReadMarkings(dcr_graph.marking);
+        return dcr_graph;
     }
 }
