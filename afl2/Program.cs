@@ -1,8 +1,7 @@
 ﻿using DCR;
-//Console.WriteLine("Hello, World!");
-//DCRGraph graph = new();
 ConformanceChecker confchecker = new("REB1.xml", "log.csv");
-
+int failed_count = confchecker.CheckConformity();
+System.Console.WriteLine($"Failed count {failed_count}");
 
 static void PrintDictionary(Dictionary<string, HashSet<string>> dictionary) {
         foreach (var kvp in dictionary){
@@ -16,14 +15,17 @@ static void PrintDictionary(Dictionary<string, HashSet<string>> dictionary) {
             Console.WriteLine(""); // Separate key-value pairs with an empty line
         }
 }
-System.Console.WriteLine("Groups:\n");
-PrintDictionary(reader.groups);
+// System.Console.WriteLine("Groups:\n");
+// PrintDictionary(reader.groups);
 
-System.Console.WriteLine("Milestones:\n");
-PrintDictionary(dcr_graph.milestones_For);
+// System.Console.WriteLine("Milestones:\n");
+// PrintDictionary(dcr_graph.milestones_For);
 
-System.Console.WriteLine("Excludes:\n");
-PrintDictionary(dcr_graph.excludes_To);
+// System.Console.WriteLine("responses:\n");
+// PrintDictionary(dc.responses_To);
 
-System.Console.WriteLine("Conditions:\n");
-PrintDictionary(dcr_graph.conditions_For);
+//System.Console.WriteLine(":\n");
+//PrintDictionary(dc.);
+
+// System.Console.WriteLine("Conditions:\n");
+// PrintDictionary(dc.conditions_For);

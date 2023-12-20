@@ -15,6 +15,10 @@ public class XMLreader {
     //Dictionary to keep track of groups (groupname, group members)
     public Dictionary<string, HashSet<string>> groups = new();
 
+    private DCRMarking init_marking = new();
+
+    private DCRGraph dcr_graph = new();
+
     // Constructor. Loads xml file from path
     public XMLreader(string xml_path) {
         try {
@@ -96,8 +100,16 @@ public class XMLreader {
         if (relation_nodes != null) {
             foreach (XmlNode relation_node in relation_nodes) {
                 if (relation_node.Attributes != null) {
-                    XmlAttribute? source = relation_node.Attributes["sourceId"];
-                    XmlAttribute? target = relation_node.Attributes["targetId"];
+                    XmlAttribute? target;
+                    XmlAttribute? source;
+                    // If we are reading the conditions, the order should be reversed
+                    if (node_address == "//condition") { 
+                        target = relation_node.Attributes["sourceId"];
+                        source = relation_node.Attributes["targetId"];
+                    } else {
+                        source = relation_node.Attributes["sourceId"];
+                        target = relation_node.Attributes["targetId"];
+                    }
                     if (source != null && target != null) {
                         string source_name = label_mapping[source.Value];
                         string target_name = label_mapping[target.Value];
@@ -123,8 +135,9 @@ public class XMLreader {
         }
     }
 
+
     // Add the marked events to given HashShet
-    private void AddMarking (HashSet<string> marking, string node_address){
+    private void AddMarking(HashSet<string> marking, string node_address){
         XmlNodeList? marked_nodes = xml_doc.SelectNodes(node_address);
         if (marked_nodes != null) {
             foreach (XmlNode marked_node in marked_nodes) {
@@ -148,21 +161,24 @@ public class XMLreader {
     }
 
     // Call the other methods
-    public DCRGraph ProcessXML () {
-        DCRGraph dcr_graph = new();
-
+    public DCRGraph ProcessXML() {
         ReadMappingsAndEvents(dcr_graph.events);
         ReadGroups();
         // In the set of events, delete the ones that are actually groups.
         dcr_graph.events = dcr_graph.events.Where(activity => !groups.ContainsKey(activity)).ToHashSet();
-
         ReadRelation(dcr_graph.conditions_For, "//condition");
         ReadRelation(dcr_graph.milestones_For, "//milestone");
         ReadRelation(dcr_graph.excludes_To, "//exclude");
-        ReadRelation(dcr_graph.excludes_To, "//exclude");
         ReadRelation(dcr_graph.includes_To, "//include");
         ReadRelation(dcr_graph.responses_To, "//response");
-        ReadMarkings(dcr_graph.marking);
+        ReadMarkings(init_marking);
+        dcr_graph.marking = init_marking;
+        return dcr_graph;
+    }
+
+    // Resets the DCR graph to have its initial markings
+    public DCRGraph ResetMarkings() {
+        dcr_graph.marking = init_marking;
         return dcr_graph;
     }
 }
