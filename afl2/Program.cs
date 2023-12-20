@@ -5,10 +5,6 @@
 XMLreader reader = new("REB1.xml");
 DCRGraph dcr_graph = reader.ProcessXML();
 
-
-
-
-
 static void PrintDictionary(Dictionary<string, HashSet<string>> dictionary) {
         foreach (var kvp in dictionary){
             Console.WriteLine($"Key: {kvp.Key}");
@@ -21,8 +17,8 @@ static void PrintDictionary(Dictionary<string, HashSet<string>> dictionary) {
             Console.WriteLine(""); // Separate key-value pairs with an empty line
         }
     }
-System.Console.WriteLine("Groups:\n");
-PrintDictionary(reader.groups);
+// System.Console.WriteLine("Groups:\n");
+// PrintDictionary(reader.groups);
 
 System.Console.WriteLine("Milestones:\n");
 PrintDictionary(dcr_graph.milestones_For);

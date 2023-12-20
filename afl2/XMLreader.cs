@@ -3,45 +3,44 @@ namespace DCR;
 using System;
 using System.Xml;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Diagnostics.Tracing;
-using System.Collections.Concurrent;
 
+// XML reader class creates DCRGraph from XML file.
 public class XMLreader {
     // XML document we read from later on. Loaded from file in constructor.
     private readonly XmlDocument xml_doc = new();
+
     // Dictionary mapping event label to event id.
     private Dictionary<string, string> label_mapping = new();
-    public Dictionary<string, HashSet<string>> groups = new();
+    
+    //Dictionary to keep track of groups (groupname, group members)
+    private Dictionary<string, HashSet<string>> groups = new();
 
     // Constructor. Loads xml file from path
     public XMLreader(string xml_path) {
         try {
             xml_doc.Load(xml_path);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             Console.WriteLine ("Error: " + ex.Message);
         }
     }
   
     // Method for reading events from XML document
     private void ReadMappingsAndEvents(HashSet<string> activities) {
-        HashSet<string> events = new HashSet<string>(); // Placeholder 
         XmlNodeList? event_nodes = xml_doc.SelectNodes("//labelMapping");
         if (event_nodes != null) {
             foreach (XmlNode event_node in event_nodes) {
-                    if (event_node.Attributes != null) {
-                        XmlAttribute? name = event_node.Attributes["labelId"];
-                        XmlAttribute? id = event_node.Attributes["eventId"];
-                        if (name != null && id != null) {
-                            string activity_name = name.Value;
-                            string activity_id = id.Value;
-                            // Add label to HashSet for later use.
-                            activities.Add(activity_name);
-                            // Add mapping to private dictionary to "translate" id's.
-                            label_mapping.Add(activity_id, activity_name);
-                        }
+                if (event_node.Attributes != null) {
+                    XmlAttribute? name = event_node.Attributes["labelId"];
+                    XmlAttribute? id = event_node.Attributes["eventId"];
+                    if (name != null && id != null) {
+                        string activity_name = name.Value;
+                        string activity_id = id.Value;
+                        // Add label to HashSet for later use.
+                        activities.Add(activity_name);
+                        // Add mapping to private dictionary to "translate" id's.
+                        label_mapping.Add(activity_id, activity_name);
                     }
+                }
             }
         }
     }
@@ -90,60 +89,58 @@ public class XMLreader {
         }
     }
 
-    // Method for reading relations from XML document and adding it do a given dictionary
+    // Method for reading relations from XML document and adding it do a given dictionary.
     private void ReadRelation(
                     Dictionary<string, HashSet<string>> relation_dict, string node_address) {
         XmlNodeList? relation_nodes = xml_doc.SelectNodes(node_address);
         if (relation_nodes != null) {
             foreach (XmlNode relation_node in relation_nodes) {
-                    if (relation_node.Attributes != null) {
-                        XmlAttribute? source = relation_node.Attributes["sourceId"];
-                        XmlAttribute? target = relation_node.Attributes["targetId"];
-                        if (source != null && target != null) {
-                            string source_name = label_mapping[source.Value];
-                            string target_name = label_mapping[target.Value];
-                            // If the source is a group head
-                            if (groups.ContainsKey(source_name)) {
-                                Console.WriteLine("source is group");
-                                // Add relation for each group member
-                                foreach (string group_member in groups[source_name]) {
-                                    AddRelation(relation_dict, group_member, target_name);
-                                }
-                            } else if (groups.ContainsKey(target_name)) {
-                                    foreach (string group_member in groups[target_name]) {
-                                        AddRelation(relation_dict, source_name, group_member);
-                                    }
-                            } else {
-                                AddRelation(relation_dict, source_name, target_name);
+                if (relation_node.Attributes != null) {
+                    XmlAttribute? source = relation_node.Attributes["sourceId"];
+                    XmlAttribute? target = relation_node.Attributes["targetId"];
+                    if (source != null && target != null) {
+                        string source_name = label_mapping[source.Value];
+                        string target_name = label_mapping[target.Value];
+                        // If the source is a group head
+                        if (groups.ContainsKey(source_name)) {
+                            // Add relation for each group member
+                            foreach (string group_member in groups[source_name]) {
+                                AddRelation(relation_dict, group_member, target_name);
                             }
+                        // If the target it is group head
+                        } else if (groups.ContainsKey(target_name)) {
+                                foreach (string group_member in groups[target_name]) {
+                                    AddRelation(relation_dict, source_name, group_member);
+                                }
+                        } else {
+                            AddRelation(relation_dict, source_name, target_name);
                         }
                     }
+                }
             }
         } else {
             Console.WriteLine("No nodes found at {node_address}");
         }
     }
 
-    // Add to markings to given HashShet
+    // Add the marked events to given HashShet
     private void AddMarking (HashSet<string> marking, string node_address){
         XmlNodeList? marked_nodes = xml_doc.SelectNodes(node_address);
         if (marked_nodes != null) {
             foreach (XmlNode marked_node in marked_nodes) {
-                    if (marked_node.Attributes != null) {
-                        XmlAttribute? id = marked_node.Attributes["id"];
-                        if (id != null) {
-                            string name = label_mapping[id.Value];
-                            marking.Add(name);
-                        }
+                if (marked_node.Attributes != null) {
+                    XmlAttribute? id = marked_node.Attributes["id"];
+                    if (id != null) {
+                        string name = label_mapping[id.Value];
+                        marking.Add(name);
                     }
+                }
             }
         }
     }
 
-
     // Read the markings of the events from XML document and update DCRMarking object.
     private void ReadMarkings(DCRMarking markings){
-        // Access the executed events
         AddMarking(markings.executed, "//executed/event");
         AddMarking(markings.included, "//included/event");
         AddMarking(markings.pending, "//pendingResponses/event");
@@ -153,6 +150,7 @@ public class XMLreader {
     // Call the other methods
     public DCRGraph ProcessXML () {
         DCRGraph dcr_graph = new();
+
         ReadMappingsAndEvents(dcr_graph.events);
         ReadGroups();
         // In the set of events, delete the ones that are actually groups.
