@@ -44,4 +44,49 @@ public class DCRGraph {
         }
         return true;
     }
+
+    public DCRMarking Execute(DCRMarking marking, string activity) {
+        // Check if the event exists
+        if (!events.Contains(activity)) {
+            return marking;
+        }
+
+        // Check if the event is enabled
+        if (!Enabled(marking, activity)) {
+            return marking;
+        }
+
+        // Create a new marking
+        DCRMarking result = marking.Clone();
+
+        // Add the event to the set of executed events
+        result.executed.Add(activity);
+    
+        // Remove the event from the set of pending events.
+        result.pending.Remove(activity);
+
+        // Add all new responses
+        result.pending.UnionWith(responses_To[activity]);
+
+        // Remove all excluded events
+        result.included.UnionWith(excludes_To[activity]);
+
+        // Add all included events
+        result.included.UnionWith(includes_To[activity]);
+
+        return result;
+    }
+    
+    public HashSet<string> getIncludedPending() {
+        // Select those included events that are also pending
+        HashSet<string> result = new HashSet<string>(marking.included);
+        result = (HashSet<string>)result.Intersect(marking.pending);
+        return result;
+    }
+
+    
+    public bool IsAccepting() {
+        // Check if there are any included events that are also pending responses
+        return getIncludedPending().Count == 0;
+    }
 }

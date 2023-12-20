@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\afl2.csproj": {}
+    "c:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\afl2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\afl2.csproj": {
+    "c:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\afl2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\afl2.csproj",
+        "projectUniqueName": "c:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\afl2.csproj",
         "projectName": "afl2",
-        "projectPath": "C:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\afl2.csproj",
+        "projectPath": "c:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\afl2.csproj",
         "packagesPath": "C:\\Users\\katja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\obj\\",
+        "outputPath": "c:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\katja\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -37,6 +37,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[30.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

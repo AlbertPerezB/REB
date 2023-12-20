@@ -13,7 +13,7 @@ public class XMLreader {
     private Dictionary<string, string> label_mapping = new();
     
     //Dictionary to keep track of groups (groupname, group members)
-    private Dictionary<string, HashSet<string>> groups = new();
+    public Dictionary<string, HashSet<string>> groups = new();
 
     // Constructor. Loads xml file from path
     public XMLreader(string xml_path) {
