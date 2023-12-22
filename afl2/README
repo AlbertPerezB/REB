@@ -1,0 +1,13 @@
+In order to run the program do the following steps:
+1) Place dcr graph(s) into the "Patterns" folder. Use the XML format. A DCR graph can be exported to
+     XML using the tool on dcrgraphs.net
+
+2) Place the log file in the main folder. This needs to be csv format and must have at least the 
+    headers "ID" and "EventName", that are the trace ID and event name respectively. Also make sure, 
+    that the events in the log and the events in the dcr graphs are the same, since the 
+    implementation is case sensitive. The csv file also needs to have delimiter ";".
+
+3) Run the project, by writing "dotnet run" in the terminal.
+
+
+
