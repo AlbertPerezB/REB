@@ -8,6 +8,3 @@ In order to run the program do the following steps:
     implementation is case sensitive. The csv file also needs to have delimiter ";".
 
 3) Run the project, by writing "dotnet run" in the terminal.
-
-
-

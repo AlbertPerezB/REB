@@ -35,6 +35,7 @@ public class ConformanceChecker {
                     }
                 } else {
                     failed_Counter++;
+                    Console.WriteLine(activity);
                     break;
                 }
             }   

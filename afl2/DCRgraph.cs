@@ -73,7 +73,6 @@ public class DCRGraph
         // Remove all excluded events
         if (excludes_To.ContainsKey(activity)) {
             result.included.ExceptWith(excludes_To[activity]);
-            Console.WriteLine(string.Join(", ", marking.pending));
         }
 
         // Add all included events
