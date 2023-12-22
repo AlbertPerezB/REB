@@ -15,9 +15,7 @@ fileNameList.Sort();
 for (int i = 0; i < fileNameList.Count(); i++) {
     ConformanceChecker confchecker = new(fileNameList[i], Path.Combine(CurrentDirectory(),"log.csv"));
     string name = Path.GetFileNameWithoutExtension(fileNameList[i]);
-    // if (name == "Pattern8"){ 
     (int ok_count, int failed_count) = confchecker.CheckConformity();
-    // }
     Console.WriteLine($"{name} | Failed count {failed_count} | Ok count {ok_count}");
 }
 
