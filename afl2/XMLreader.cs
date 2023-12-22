@@ -144,7 +144,7 @@ public class XMLreader {
                     XmlAttribute? id = marked_node.Attributes["id"];
                     if (id != null) {
                         string name = label_mapping[id.Value];
-                        marking.Add(name);
+                        if (!groups.ContainsKey(name)) marking.Add(name);
                     }
                 }
             }
@@ -156,7 +156,6 @@ public class XMLreader {
         AddMarking(markings.executed, "//executed/event");
         AddMarking(markings.included, "//included/event");
         AddMarking(markings.pending, "//pendingResponses/event");
-
     }
 
     // Call the other methods

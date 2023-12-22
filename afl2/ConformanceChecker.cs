@@ -26,6 +26,7 @@ public class ConformanceChecker {
                 // If the next activity is enabled, then it's ok, and we update the marking.
                 if (dcr_Graph.Enabled(dcr_Graph.marking, activity)) {
                     dcr_Graph.marking = dcr_Graph.Execute(dcr_Graph.marking, activity);
+                    //Console.WriteLine(string.Join(", ",dcr_Graph.marking.included));
                     if (--count == 0) { // If its the last activity the graph needs to be accepting
                         // System.Console.WriteLine($"activity: {activity}");
                         if (!dcr_Graph.IsAccepting()) {

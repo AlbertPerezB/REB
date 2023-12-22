@@ -3,12 +3,15 @@
 // Put XML files here
 string folder_Path = "Patterns";
 
-string[] file_Names = Directory.GetFiles(folder_Path);
+string[] file_Names = (string[])Directory.GetFiles(folder_Path);
 
-for (int i = 0; i < file_Names.Count(); i++) {
-    ConformanceChecker confchecker = new(file_Names[i], "log.csv");
+List <string> fileNameList = new List<string>(file_Names);
+fileNameList.Sort();
+
+for (int i = 0; i < fileNameList.Count(); i++) {
+    ConformanceChecker confchecker = new(fileNameList[i], "log.csv");
     (int ok_count, int failed_count) = confchecker.CheckConformity();
-    string name = Path.GetFileNameWithoutExtension(file_Names[i]);
+    string name = Path.GetFileNameWithoutExtension(fileNameList[i]);
     Console.WriteLine($"{name} | Failed count {failed_count} | Ok count {ok_count}");
 }
 

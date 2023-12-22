@@ -50,8 +50,7 @@ public class DCRGraph
         return true;
     }
 
-    public DCRMarking Execute(DCRMarking marking, string activity)
-    {
+    public DCRMarking Execute(DCRMarking marking, string activity) {
 
         // Check if the event exists
         if (!events.Contains(activity)) return marking;
@@ -72,27 +71,25 @@ public class DCRGraph
         if (responses_To.ContainsKey(activity)) result.pending.UnionWith(responses_To[activity]);
 
         // Remove all excluded events
-        if (excludes_To.ContainsKey(activity)) result.included.ExceptWith(excludes_To[activity]);
+        if (excludes_To.ContainsKey(activity)) {
+            result.included.ExceptWith(excludes_To[activity]);
+            Console.WriteLine(string.Join(", ", marking.pending));
+        }
 
         // Add all included events
-        if (includes_To.ContainsKey(activity))
-        {
-            result.included.UnionWith(includes_To[activity]);
-        }
+        if (includes_To.ContainsKey(activity)) result.included.UnionWith(includes_To[activity]);
 
         return result;
     }
 
-    public HashSet<string> getIncludedPending()
-    {
+    public HashSet<string> getIncludedPending() {
         // Select those included events that are also pending
         HashSet<string> result = new(marking.included);
         result.IntersectWith(marking.pending);
         return result;
     }
 
-    public bool IsAccepting()
-    {
+    public bool IsAccepting() {
         // Check if there are any included events that are also pending responses
         return getIncludedPending().Count == 0;
     }
