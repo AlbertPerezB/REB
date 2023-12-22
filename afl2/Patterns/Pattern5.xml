@@ -117,12 +117,12 @@
             <labels>
                 <label id="First payment"/>
                 <label id="Account number changed"/>
-                <label id="Account changed approved"/>
+                <label id="Approve changed account"/>
             </labels>
             <labelMappings>
                 <labelMapping eventId="Activity0" labelId="First payment"/>
                 <labelMapping eventId="Activity1" labelId="Account number changed"/>
-                <labelMapping eventId="Activity2" labelId="Account changed approved"/>
+                <labelMapping eventId="Activity2" labelId="Approve changed account"/>
             </labelMappings>
             <expressions/>
             <variables/>

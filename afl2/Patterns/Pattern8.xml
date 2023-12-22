@@ -1,55 +1,17 @@
 <dcrgraph title="REB 1 copy" dataTypesStatus="hide" filterLevel="-1" insightFilter="false" zoomLevel="0" formGroupStyle="Normal" formLayoutStyle="Horizontal" formShowPendingCount="true" graphBG="#f1f6fe" graphType="0" exercise="false">
     <meta>
-        <graph id="1702877" hash="53F0AC8E4B24C0D225DA85543B045E48" guid="7204FEAD-6768-4F49-8910-660EF7A651AB" OwnerName="Albert Pérez Bechmann" OwnerId="150286" categoryId="8388" categoryTitle="Default" Keywords=""/>
-        <revision id="3559615" type="minor" date="2023-12-21T16:33:47.060"/>
-        <organization id="1024" name="Academic Alliance - Copenhagen University" type="Demonstration"/>
-    </meta>
-    <meta>
-        <graph id="1702877" hash="53F0AC8E4B24C0D225DA85543B045E48" guid="7204FEAD-6768-4F49-8910-660EF7A651AB" OwnerName="Albert Pérez Bechmann" OwnerId="150286" categoryId="8388" categoryTitle="Default" Keywords=""/>
-        <revision id="3559615" type="minor" date="2023-12-21T16:33:47.060"/>
+        <graph id="1702877" hash="0AFD3960EAE2DC700A8713D3B9F8AF11" guid="7204FEAD-6768-4F49-8910-660EF7A651AB" OwnerName="Albert Pérez Bechmann" OwnerId="150286" categoryId="8388" categoryTitle="Default" Keywords=""/>
+        <revision id="3560190" type="minor" date="2023-12-22T13:47:37.120"/>
         <organization id="1024" name="Academic Alliance - Copenhagen University" type="Demonstration"/>
     </meta>
     <specification>
         <resources>
             <events>
-                <event id="Activity0">
-                    <precondition message=""/>
-                    <custom>
-                        <visualization>
-                            <location xLoc="150" yLoc="175"/>
-                            <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
-                        </visualization>
-                        <roles>
-                            <role/>
-                        </roles>
-                        <readRoles>
-                            <readRole/>
-                        </readRoles>
-                        <groups>
-                            <group/>
-                        </groups>
-                        <phases>
-                            <phase/>
-                        </phases>
-                        <eventType/>
-                        <eventScope>private</eventScope>
-                        <eventTypeData/>
-                        <eventDescription/>
-                        <purpose/>
-                        <guide/>
-                        <insight use="false"/>
-                        <level>1</level>
-                        <sequence>1</sequence>
-                        <costs>0</costs>
-                        <eventData/>
-                        <interfaces/>
-                    </custom>
-                </event>
                 <event id="Activity2" type="subprocess">
                     <precondition message=""/>
                     <custom>
                         <visualization>
-                            <location xLoc="375" yLoc="216"/>
+                            <location xLoc="325" yLoc="166"/>
                             <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
                         </visualization>
                         <roles>
@@ -81,7 +43,7 @@
                         <precondition message=""/>
                         <custom>
                             <visualization>
-                                <location xLoc="564" yLoc="266"/>
+                                <location xLoc="514" yLoc="216"/>
                                 <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
                             </visualization>
                             <roles>
@@ -114,7 +76,7 @@
                         <precondition message=""/>
                         <custom>
                             <visualization>
-                                <location xLoc="850" yLoc="275"/>
+                                <location xLoc="800" yLoc="225"/>
                                 <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
                             </visualization>
                             <roles>
@@ -147,7 +109,7 @@
                         <precondition message=""/>
                         <custom>
                             <visualization>
-                                <location xLoc="550" yLoc="425"/>
+                                <location xLoc="500" yLoc="375"/>
                                 <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
                             </visualization>
                             <roles>
@@ -180,7 +142,7 @@
                         <precondition message=""/>
                         <custom>
                             <visualization>
-                                <location xLoc="400" yLoc="275"/>
+                                <location xLoc="350" yLoc="225"/>
                                 <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
                             </visualization>
                             <roles>
@@ -213,7 +175,7 @@
                         <precondition message=""/>
                         <custom>
                             <visualization>
-                                <location xLoc="850" yLoc="425"/>
+                                <location xLoc="800" yLoc="375"/>
                                 <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
                             </visualization>
                             <roles>
@@ -246,7 +208,7 @@
                         <precondition message=""/>
                         <custom>
                             <visualization>
-                                <location xLoc="400" yLoc="425"/>
+                                <location xLoc="350" yLoc="375"/>
                                 <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
                             </visualization>
                             <roles>
@@ -279,7 +241,7 @@
                         <precondition message=""/>
                         <custom>
                             <visualization>
-                                <location xLoc="1000" yLoc="275"/>
+                                <location xLoc="950" yLoc="225"/>
                                 <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
                             </visualization>
                             <roles>
@@ -312,7 +274,7 @@
                         <precondition message=""/>
                         <custom>
                             <visualization>
-                                <location xLoc="1050" yLoc="425"/>
+                                <location xLoc="950" yLoc="375"/>
                                 <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
                             </visualization>
                             <roles>
@@ -345,7 +307,7 @@
                         <precondition message=""/>
                         <custom>
                             <visualization>
-                                <location xLoc="700" yLoc="275"/>
+                                <location xLoc="650" yLoc="225"/>
                                 <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
                             </visualization>
                             <roles>
@@ -378,7 +340,7 @@
                         <precondition message=""/>
                         <custom>
                             <visualization>
-                                <location xLoc="700" yLoc="425"/>
+                                <location xLoc="650" yLoc="375"/>
                                 <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
                             </visualization>
                             <roles>
@@ -411,7 +373,7 @@
                         <precondition message=""/>
                         <custom>
                             <visualization>
-                                <location xLoc="1050" yLoc="575"/>
+                                <location xLoc="950" yLoc="525"/>
                                 <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
                             </visualization>
                             <roles>
@@ -440,11 +402,11 @@
                             <interfaces/>
                         </custom>
                     </event>
-                    <event id="Activity13">
+                    <event id="Activity0">
                         <precondition message=""/>
                         <custom>
                             <visualization>
-                                <location xLoc="900" yLoc="575"/>
+                                <location xLoc="500" yLoc="525"/>
                                 <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
                             </visualization>
                             <roles>
@@ -467,53 +429,85 @@
                             <guide/>
                             <insight use="false"/>
                             <level>1</level>
-                            <sequence>14</sequence>
-                            <costs>0</costs>
-                            <eventData/>
-                            <interfaces/>
-                        </custom>
-                    </event>
-                    <event id="Activity14">
-                        <precondition message=""/>
-                        <custom>
-                            <visualization>
-                                <location xLoc="750" yLoc="575"/>
-                                <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
-                            </visualization>
-                            <roles>
-                                <role/>
-                            </roles>
-                            <readRoles>
-                                <readRole/>
-                            </readRoles>
-                            <groups>
-                                <group/>
-                            </groups>
-                            <phases>
-                                <phase/>
-                            </phases>
-                            <eventType/>
-                            <eventScope>private</eventScope>
-                            <eventTypeData/>
-                            <eventDescription/>
-                            <purpose/>
-                            <guide/>
-                            <insight use="false"/>
-                            <level>1</level>
-                            <sequence>15</sequence>
+                            <sequence>1</sequence>
                             <costs>0</costs>
                             <eventData/>
                             <interfaces/>
                         </custom>
                     </event>
                 </event>
+                <event id="Activity13">
+                    <precondition message=""/>
+                    <custom>
+                        <visualization>
+                            <location xLoc="1150" yLoc="575"/>
+                            <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
+                        </visualization>
+                        <roles>
+                            <role/>
+                        </roles>
+                        <readRoles>
+                            <readRole/>
+                        </readRoles>
+                        <groups>
+                            <group/>
+                        </groups>
+                        <phases>
+                            <phase/>
+                        </phases>
+                        <eventType/>
+                        <eventScope>private</eventScope>
+                        <eventTypeData/>
+                        <eventDescription/>
+                        <purpose/>
+                        <guide/>
+                        <insight use="false"/>
+                        <level>1</level>
+                        <sequence>14</sequence>
+                        <costs>0</costs>
+                        <eventData/>
+                        <interfaces/>
+                    </custom>
+                </event>
+                <event id="Activity14">
+                    <precondition message=""/>
+                    <custom>
+                        <visualization>
+                            <location xLoc="1150" yLoc="375"/>
+                            <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
+                        </visualization>
+                        <roles>
+                            <role/>
+                        </roles>
+                        <readRoles>
+                            <readRole/>
+                        </readRoles>
+                        <groups>
+                            <group/>
+                        </groups>
+                        <phases>
+                            <phase/>
+                        </phases>
+                        <eventType/>
+                        <eventScope>private</eventScope>
+                        <eventTypeData/>
+                        <eventDescription/>
+                        <purpose/>
+                        <guide/>
+                        <insight use="false"/>
+                        <level>1</level>
+                        <sequence>15</sequence>
+                        <costs>0</costs>
+                        <eventData/>
+                        <interfaces/>
+                    </custom>
+                </event>
             </events>
             <subProcesses/>
             <distribution/>
             <labels>
-                <label id="Fill out application"/>
+                <label id="Everything else"/>
                 <label id="Lawyer Review"/>
-                <label id="Next"/>
                 <label id="Architect Review"/>
                 <label id="Reject"/>
                 <label id="Applicant informed"/>
@@ -524,13 +518,13 @@
                 <label id="Approve changed account"/>
                 <label id="Change Phase to Payout"/>
                 <label id="Change Phase to End Report"/>
-                <label id="Execute Abandon"/>
-                <label id="Change phase to Abandon "/>
+                <label id="Execute abandon"/>
+                <label id="Change phase to Abandon"/>
+                <label id="Fill out application"/>
             </labels>
             <labelMappings>
-                <labelMapping eventId="Activity0" labelId="Fill out application"/>
+                <labelMapping eventId="Activity2" labelId="Everything else"/>
                 <labelMapping eventId="Activity1" labelId="Lawyer Review"/>
-                <labelMapping eventId="Activity2" labelId="Next"/>
                 <labelMapping eventId="Activity3" labelId="Architect Review"/>
                 <labelMapping eventId="Activity4" labelId="Reject"/>
                 <labelMapping eventId="Activity5" labelId="Applicant informed"/>
@@ -541,8 +535,9 @@
                 <labelMapping eventId="Activity10" labelId="Approve changed account"/>
                 <labelMapping eventId="Activity11" labelId="Change Phase to Payout"/>
                 <labelMapping eventId="Activity12" labelId="Change Phase to End Report"/>
-                <labelMapping eventId="Activity13" labelId="Execute Abandon"/>
-                <labelMapping eventId="Activity14" labelId="Change phase to Abandon "/>
+                <labelMapping eventId="Activity13" labelId="Execute abandon"/>
+                <labelMapping eventId="Activity14" labelId="Change phase to Abandon"/>
+                <labelMapping eventId="Activity0" labelId="Fill out application"/>
             </labelMappings>
             <expressions/>
             <variables/>
@@ -575,12 +570,13 @@
             </custom>
         </resources>
         <constraints>
-            <conditions>
-                <condition sourceId="Activity0" targetId="Activity2" filterLevel="1" description="" time="" groups=""/>
-            </conditions>
+            <conditions/>
             <responses/>
             <coresponses/>
-            <excludes/>
+            <excludes>
+                <exclude sourceId="Activity13" targetId="Activity2" filterLevel="1" description="" time="" groups=""/>
+                <exclude sourceId="Activity13" targetId="Activity13" filterLevel="1" description="" time="" groups=""/>
+            </excludes>
             <includes/>
             <milestones/>
             <updates/>
@@ -596,9 +592,8 @@
             <globalStore/>
             <executed/>
             <included>
-                <event id="Activity0"/>
-                <event id="Activity1"/>
                 <event id="Activity2"/>
+                <event id="Activity1"/>
                 <event id="Activity3"/>
                 <event id="Activity4"/>
                 <event id="Activity5"/>
@@ -611,6 +606,7 @@
                 <event id="Activity12"/>
                 <event id="Activity13"/>
                 <event id="Activity14"/>
+                <event id="Activity0"/>
             </included>
             <pendingResponses/>
         </marking>

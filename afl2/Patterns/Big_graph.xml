@@ -1,7 +1,7 @@
 <dcrgraph title="REB 1" dataTypesStatus="hide" filterLevel="-1" insightFilter="false" zoomLevel="-7" formGroupStyle="Normal" formLayoutStyle="Horizontal" formShowPendingCount="true" graphBG="#f1f6fe" graphType="0" exercise="false">
     <meta>
-        <graph id="1702721" hash="73BA31A08117CD4EDB5A5DBFF18F5EAC" guid="A3B43F4D-CFBD-4971-AF1A-E7A8ED37333A" OwnerName="Katja Borchorst" OwnerId="150287" categoryId="8390" categoryTitle="Default" Keywords=""/>
-        <revision id="3543581" type="minor" date="2023-12-11T13:55:56.130"/>
+        <graph id="1702721" hash="2E4D907329792F91837B30BF61A97B77" guid="A3B43F4D-CFBD-4971-AF1A-E7A8ED37333A" OwnerName="Katja Borchorst" OwnerId="150287" categoryId="8390" categoryTitle="Default" Keywords=""/>
+        <revision id="3560191" type="minor" date="2023-12-22T13:47:38.560"/>
         <organization id="1024" name="Academic Alliance - Copenhagen University" type="Demonstration"/>
     </meta>
     <specification>
@@ -643,7 +643,6 @@
         </resources>
         <constraints>
             <conditions>
-                <condition sourceId="Activity10_2" targetId="Activity11" filterLevel="1" description="" time="" groups=""/>
                 <condition sourceId="Activity6CopyCopy" targetId="Activity13Copy" filterLevel="1" description="" time="" groups=""/>
                 <condition sourceId="Activity2Copy" targetId="Activity10" filterLevel="1" description="" time="" groups=""/>
                 <condition sourceId="Activity2Copy" targetId="Activity10_2" filterLevel="1" description="" time="" groups=""/>

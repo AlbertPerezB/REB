@@ -135,7 +135,6 @@ public class XMLreader {
         }
     }
 
-
     // Add the marked events to given HashShet
     private void AddMarking(HashSet<string> marking, string node_address){
         XmlNodeList? marked_nodes = xml_doc.SelectNodes(node_address);

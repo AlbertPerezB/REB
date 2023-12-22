@@ -115,13 +115,13 @@
             <subProcesses/>
             <distribution/>
             <labels>
-                <label id="Change phase to Payout"/>
-                <label id="First Payment"/>
+                <label id="Change Phase to Payout"/>
+                <label id="First payment"/>
                 <label id="Change Phase to End Report"/>
             </labels>
             <labelMappings>
-                <labelMapping eventId="Activity0" labelId="Change phase to Payout"/>
-                <labelMapping eventId="Activity1" labelId="First Payment"/>
+                <labelMapping eventId="Activity0" labelId="Change Phase to Payout"/>
+                <labelMapping eventId="Activity1" labelId="First payment"/>
                 <labelMapping eventId="Activity2" labelId="Change Phase to End Report"/>
             </labelMappings>
             <expressions/>

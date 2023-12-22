@@ -8,4 +8,9 @@ public class DCRMarking {
     public DCRMarking Clone(){
         return (DCRMarking)MemberwiseClone();
     }
+
+    public void printDCR() {
+        System.Console.WriteLine("included");
+        Console.WriteLine(string.Join(", ", included));
+    }
 }

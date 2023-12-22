@@ -1,13 +1,16 @@
 ﻿using DCR;
 
-List<string> files = new() {"Pattern1.xml", "Pattern2.xml", "Pattern3.xml", "Pattern4.xml", "Pattern5.xml", 
-    "Pattern6.xml", "Pattern7.xml", "Pattern8.xml", "REB1.xml"};
+// Put XML files here
+string folder_Path = "Patterns";
 
-foreach (string graph in files) {
-    ConformanceChecker confchecker = new(graph, "log.csv");
-    int failed_count = confchecker.CheckConformity();
-    Console.WriteLine($"Graph: {(string)graph.Except("Pattern.xml")} | Failed count {failed_count}");
-    }
+string[] file_Names = Directory.GetFiles(folder_Path);
+
+for (int i = 0; i < file_Names.Count(); i++) {
+    ConformanceChecker confchecker = new(file_Names[i], "log.csv");
+    (int ok_count, int failed_count) = confchecker.CheckConformity();
+    string name = Path.GetFileNameWithoutExtension(file_Names[i]);
+    Console.WriteLine($"{name} | Failed count {failed_count} | Ok count {ok_count}");
+}
 
 static void PrintDictionary(Dictionary<string, HashSet<string>> dictionary) {
         foreach (var kvp in dictionary){
@@ -17,21 +20,7 @@ static void PrintDictionary(Dictionary<string, HashSet<string>> dictionary) {
             foreach (var value in kvp.Value){
                 Console.WriteLine($"  {value}");
             }
-
             Console.WriteLine(""); // Separate key-value pairs with an empty line
         }
 }
-// System.Console.WriteLine("Groups:\n");
-// PrintDictionary(reader.groups);
 
-// System.Console.WriteLine("Milestones:\n");
-// PrintDictionary(dcr_graph.milestones_For);
-
-// System.Console.WriteLine("responses:\n");
-// PrintDictionary(dc.responses_To);
-
-//System.Console.WriteLine(":\n");
-//PrintDictionary(dc.);
-
-// System.Console.WriteLine("Conditions:\n");
-// PrintDictionary(dc.conditions_For);

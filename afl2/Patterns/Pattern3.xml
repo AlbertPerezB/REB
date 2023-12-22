@@ -1,12 +1,12 @@
 <dcrgraph title="REB 1 copy" dataTypesStatus="hide" filterLevel="-1" insightFilter="false" zoomLevel="0" formGroupStyle="Normal" formLayoutStyle="Horizontal" formShowPendingCount="true" graphBG="#f1f6fe" graphType="0" exercise="false">
     <meta>
-        <graph id="1702877" hash="A4294668E638098C2D01E015A8CB4CEA" guid="7204FEAD-6768-4F49-8910-660EF7A651AB" OwnerName="Albert Pérez Bechmann" OwnerId="150286" categoryId="8388" categoryTitle="Default" Keywords=""/>
-        <revision id="3559526" type="minor" date="2023-12-21T16:17:55.560"/>
+        <graph id="1702877" hash="EBBBD4E85CBB815C65969691999FF9B8" guid="7204FEAD-6768-4F49-8910-660EF7A651AB" OwnerName="Albert Pérez Bechmann" OwnerId="150286" categoryId="8388" categoryTitle="Default" Keywords=""/>
+        <revision id="3559539" type="minor" date="2023-12-21T16:22:01.443"/>
         <organization id="1024" name="Academic Alliance - Copenhagen University" type="Demonstration"/>
     </meta>
     <meta>
-        <graph id="1702877" hash="A4294668E638098C2D01E015A8CB4CEA" guid="7204FEAD-6768-4F49-8910-660EF7A651AB" OwnerName="Albert Pérez Bechmann" OwnerId="150286" categoryId="8388" categoryTitle="Default" Keywords=""/>
-        <revision id="3559526" type="minor" date="2023-12-21T16:17:55.560"/>
+        <graph id="1702877" hash="EBBBD4E85CBB815C65969691999FF9B8" guid="7204FEAD-6768-4F49-8910-660EF7A651AB" OwnerName="Albert Pérez Bechmann" OwnerId="150286" categoryId="8388" categoryTitle="Default" Keywords=""/>
+        <revision id="3559539" type="minor" date="2023-12-21T16:22:01.443"/>
         <organization id="1024" name="Academic Alliance - Copenhagen University" type="Demonstration"/>
     </meta>
     <specification>
@@ -78,16 +78,51 @@
                         <interfaces/>
                     </custom>
                 </event>
+                <event id="Activity2">
+                    <precondition message=""/>
+                    <custom>
+                        <visualization>
+                            <location xLoc="430" yLoc="390"/>
+                            <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc"/>
+                        </visualization>
+                        <roles>
+                            <role/>
+                        </roles>
+                        <readRoles>
+                            <readRole/>
+                        </readRoles>
+                        <groups>
+                            <group/>
+                        </groups>
+                        <phases>
+                            <phase/>
+                        </phases>
+                        <eventType/>
+                        <eventScope>private</eventScope>
+                        <eventTypeData/>
+                        <eventDescription/>
+                        <purpose/>
+                        <guide/>
+                        <insight use="false"/>
+                        <level>1</level>
+                        <sequence>3</sequence>
+                        <costs>0</costs>
+                        <eventData/>
+                        <interfaces/>
+                    </custom>
+                </event>
             </events>
             <subProcesses/>
             <distribution/>
             <labels>
-                <label id="Change phase to Payout"/>
-                <label id="First Payment"/>
+                <label id="Applicant informed"/>
+                <label id="Reject"/>
+                <label id="Change phase to Abort"/>
             </labels>
             <labelMappings>
-                <labelMapping eventId="Activity0" labelId="Change phase to Payout"/>
-                <labelMapping eventId="Activity1" labelId="First Payment"/>
+                <labelMapping eventId="Activity0" labelId="Applicant informed"/>
+                <labelMapping eventId="Activity1" labelId="Reject"/>
+                <labelMapping eventId="Activity2" labelId="Change phase to Abort"/>
             </labelMappings>
             <expressions/>
             <variables/>
@@ -122,7 +157,8 @@
         <constraints>
             <conditions/>
             <responses>
-                <response sourceId="Activity0" targetId="Activity1" filterLevel="1" description="" time="" groups=""/>
+                <response sourceId="Activity1" targetId="Activity2" filterLevel="1" description="" time="" groups=""/>
+                <response sourceId="Activity1" targetId="Activity0" filterLevel="1" description="" time="" groups=""/>
             </responses>
             <coresponses/>
             <excludes/>
@@ -143,6 +179,7 @@
             <included>
                 <event id="Activity0"/>
                 <event id="Activity1"/>
+                <event id="Activity2"/>
             </included>
             <pendingResponses/>
         </marking>
