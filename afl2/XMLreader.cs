@@ -15,8 +15,6 @@ public class XMLreader {
     //Dictionary to keep track of groups (groupname, group members)
     public Dictionary<string, HashSet<string>> groups = new();
 
-    private DCRMarking init_marking = new();
-
     private DCRGraph dcr_graph = new();
 
     // Constructor. Loads xml file from path
@@ -169,14 +167,14 @@ public class XMLreader {
         ReadRelation(dcr_graph.excludes_To, "//exclude");
         ReadRelation(dcr_graph.includes_To, "//include");
         ReadRelation(dcr_graph.responses_To, "//response");
-        ReadMarkings(init_marking);
-        dcr_graph.marking = init_marking;
+        ReadMarkings(dcr_graph.marking);
         return dcr_graph;
     }
 
     // Resets the DCR graph to have its initial markings
     public DCRGraph ResetMarkings() {
-        dcr_graph.marking = init_marking;
+        dcr_graph.marking = new DCRMarking();
+        ReadMarkings(dcr_graph.marking);
         return dcr_graph;
     }
 }

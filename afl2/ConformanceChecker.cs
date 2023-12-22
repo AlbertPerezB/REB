@@ -1,5 +1,7 @@
 namespace DCR;
 using System;
+using System.Runtime.InteropServices;
+using CsvHelper;
 
 public class ConformanceChecker {
     CSVReader csv;
@@ -11,9 +13,6 @@ public class ConformanceChecker {
         xml = new(xml_path);
         csv = new(csv_path);
         dcr_Graph = xml.ProcessXML();
-        // System.Console.WriteLine("inc:");
-        // // PrintDictionary(dcr_Graph.marking.included);
-        // Console.WriteLine(string.Join(", ", dcr_Graph.marking.included));
     }
 
     // Counts the amount of times a non-enabled action was in the log then returns ok count and failed count
@@ -35,7 +34,6 @@ public class ConformanceChecker {
                     }
                 } else {
                     failed_Counter++;
-                    Console.WriteLine(activity);
                     break;
                 }
             }   

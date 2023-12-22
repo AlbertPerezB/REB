@@ -1,20 +1,24 @@
-﻿using DCR;
+﻿using System.Diagnostics;
+using DCR;
 
-// Put XML files here
-string folder_Path = "Patterns";
 
-string[] file_Names = (string[])Directory.GetFiles(folder_Path);
+static string CurrentDirectory() {
+    if (!Debugger.IsAttached) return Directory.GetCurrentDirectory();
+    else return Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\");
+}
+
+string[] file_Names = Directory.GetFiles(Path.Combine(CurrentDirectory(),"Patterns"));
 
 List <string> fileNameList = new List<string>(file_Names);
 fileNameList.Sort();
 
 for (int i = 0; i < fileNameList.Count(); i++) {
-    ConformanceChecker confchecker = new(fileNameList[i], "log.csv");
+    ConformanceChecker confchecker = new(fileNameList[i], Path.Combine(CurrentDirectory(),"log.csv"));
     string name = Path.GetFileNameWithoutExtension(fileNameList[i]);
-    if (name == "Pattern8"){ 
-        (int ok_count, int failed_count) = confchecker.CheckConformity();
-    }
-    // Console.WriteLine($"{name} | Failed count {failed_count} | Ok count {ok_count}");
+    // if (name == "Pattern8"){ 
+    (int ok_count, int failed_count) = confchecker.CheckConformity();
+    // }
+    Console.WriteLine($"{name} | Failed count {failed_count} | Ok count {ok_count}");
 }
 
 static void PrintDictionary(Dictionary<string, HashSet<string>> dictionary) {

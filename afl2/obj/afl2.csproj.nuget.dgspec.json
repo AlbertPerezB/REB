@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jesperlind/Documents/GitHub/REB/afl2/afl2.csproj": {}
+    "C:\\Users\\Albert\\Documents\\GitHub\\REB\\afl2\\afl2.csproj": {}
   },
   "projects": {
-    "/Users/jesperlind/Documents/GitHub/REB/afl2/afl2.csproj": {
+    "C:\\Users\\Albert\\Documents\\GitHub\\REB\\afl2\\afl2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jesperlind/Documents/GitHub/REB/afl2/afl2.csproj",
+        "projectUniqueName": "C:\\Users\\Albert\\Documents\\GitHub\\REB\\afl2\\afl2.csproj",
         "projectName": "afl2",
-        "projectPath": "/Users/jesperlind/Documents/GitHub/REB/afl2/afl2.csproj",
-        "packagesPath": "/Users/jesperlind/.nuget/packages/",
-        "outputPath": "/Users/jesperlind/Documents/GitHub/REB/afl2/obj/",
+        "projectPath": "C:\\Users\\Albert\\Documents\\GitHub\\REB\\afl2\\afl2.csproj",
+        "packagesPath": "C:\\Users\\Albert\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Albert\\Documents\\GitHub\\REB\\afl2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/jesperlind/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Albert\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -59,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

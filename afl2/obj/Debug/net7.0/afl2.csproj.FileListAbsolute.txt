@@ -49,3 +49,20 @@ C:/Users/Albert/Documents/GitHub/REB/afl2/obj/Debug/net7.0/afl2.genruntimeconfig
 C:/Users/Albert/Documents/GitHub/REB/afl2/obj/Debug/net7.0/ref/afl2.dll
 C:/Users/katja/OneDrive - University of Copenhagen/REB/REB/afl2/bin/Debug/net7.0/CsvHelper.dll
 C:/Users/katja/OneDrive - University of Copenhagen/REB/REB/afl2/obj/Debug/net7.0/afl2.csproj.CopyComplete
+C:\Users\Albert\Documents\GitHub\REB\afl2\bin\Debug\net7.0\afl2.exe
+C:\Users\Albert\Documents\GitHub\REB\afl2\bin\Debug\net7.0\afl2.deps.json
+C:\Users\Albert\Documents\GitHub\REB\afl2\bin\Debug\net7.0\afl2.runtimeconfig.json
+C:\Users\Albert\Documents\GitHub\REB\afl2\bin\Debug\net7.0\afl2.dll
+C:\Users\Albert\Documents\GitHub\REB\afl2\bin\Debug\net7.0\afl2.pdb
+C:\Users\Albert\Documents\GitHub\REB\afl2\bin\Debug\net7.0\CsvHelper.dll
+C:\Users\Albert\Documents\GitHub\REB\afl2\obj\Debug\net7.0\afl2.csproj.AssemblyReference.cache
+C:\Users\Albert\Documents\GitHub\REB\afl2\obj\Debug\net7.0\afl2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Albert\Documents\GitHub\REB\afl2\obj\Debug\net7.0\afl2.AssemblyInfoInputs.cache
+C:\Users\Albert\Documents\GitHub\REB\afl2\obj\Debug\net7.0\afl2.AssemblyInfo.cs
+C:\Users\Albert\Documents\GitHub\REB\afl2\obj\Debug\net7.0\afl2.csproj.CoreCompileInputs.cache
+C:\Users\Albert\Documents\GitHub\REB\afl2\obj\Debug\net7.0\afl2.csproj.CopyComplete
+C:\Users\Albert\Documents\GitHub\REB\afl2\obj\Debug\net7.0\afl2.dll
+C:\Users\Albert\Documents\GitHub\REB\afl2\obj\Debug\net7.0\refint\afl2.dll
+C:\Users\Albert\Documents\GitHub\REB\afl2\obj\Debug\net7.0\afl2.pdb
+C:\Users\Albert\Documents\GitHub\REB\afl2\obj\Debug\net7.0\afl2.genruntimeconfig.cache
+C:\Users\Albert\Documents\GitHub\REB\afl2\obj\Debug\net7.0\ref\afl2.dll
