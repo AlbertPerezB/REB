@@ -49,34 +49,19 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\katja\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\jespe\\.nuget\\packages\\": {}
->>>>>>> c0b8a5059ed09f2dab04655a5b62c017550ed6eb
+    "/Users/jesperlind/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\afl2.csproj",
+      "projectUniqueName": "/Users/jesperlind/Documents/GitHub/REB/afl2/afl2.csproj",
       "projectName": "afl2",
-      "projectPath": "C:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\afl2.csproj",
-      "packagesPath": "C:\\Users\\katja\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\obj\\",
+      "projectPath": "/Users/jesperlind/Documents/GitHub/REB/afl2/afl2.csproj",
+      "packagesPath": "/Users/jesperlind/.nuget/packages/",
+      "outputPath": "/Users/jesperlind/Documents/GitHub/REB/afl2/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\katja\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-      "projectUniqueName": "C:\\Users\\jespe\\Documents\\REB\\afl2\\afl2.csproj",
-      "projectName": "afl2",
-      "projectPath": "C:\\Users\\jespe\\Documents\\REB\\afl2\\afl2.csproj",
-      "packagesPath": "C:\\Users\\jespe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jespe\\Documents\\REB\\afl2\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\jespe\\AppData\\Roaming\\NuGet\\NuGet.Config"
->>>>>>> c0b8a5059ed09f2dab04655a5b62c017550ed6eb
+        "/Users/jesperlind/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -121,8 +106,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /Users/jesperlind/Documents/GitHub/REB/afl2/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
