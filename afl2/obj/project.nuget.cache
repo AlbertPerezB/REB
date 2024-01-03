@@ -1,10 +1,18 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "NUKJuL8So1+NwIrmF7cUcy6xaY+4DvNgViaSfNMBX2s8AqBbMPazwa8FuM0AIB6ScpaAR6VhTjXrm9acPY3RqA==",
   "success": true,
   "projectFilePath": "C:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\afl2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\katja\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512"
+=======
+  "dgSpecHash": "ESE3wqKWTgly2OVZuZ44+hq4cW+E6v7jXRlzZk3vU2jHjRcbTt53bHfg7W6M8gvyGrtHyg5yWdvUKYS5v+254A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jespe\\Documents\\REB\\afl2\\afl2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jespe\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512"
+>>>>>>> c0b8a5059ed09f2dab04655a5b62c017550ed6eb
   ],
   "logs": []
 }
