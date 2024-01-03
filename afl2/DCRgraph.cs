@@ -2,8 +2,7 @@ using System.Dynamic;
 
 namespace DCR;
 
-public class DCRGraph
-{
+public class DCRGraph {
     // Events
     public HashSet<string> events = new HashSet<string>();
     // Relations
@@ -16,8 +15,7 @@ public class DCRGraph
     // Marking
     public DCRMarking marking = new();
 
-    public bool Enabled(DCRMarking marking, string activity)
-    {
+    public bool Enabled(DCRMarking marking, string activity) {
         // Open world assumption
         if (!events.Contains(activity)) return true;
 
