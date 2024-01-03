@@ -49,19 +49,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Albert\\.nuget\\packages\\": {}
+    "C:\\Users\\katja\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Albert\\Documents\\GitHub\\REB\\afl2\\afl2.csproj",
+      "projectUniqueName": "C:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\afl2.csproj",
       "projectName": "afl2",
-      "projectPath": "C:\\Users\\Albert\\Documents\\GitHub\\REB\\afl2\\afl2.csproj",
-      "packagesPath": "C:\\Users\\Albert\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Albert\\Documents\\GitHub\\REB\\afl2\\obj\\",
+      "projectPath": "C:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\afl2.csproj",
+      "packagesPath": "C:\\Users\\katja\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Albert\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\katja\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"

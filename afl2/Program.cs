@@ -19,15 +19,5 @@ for (int i = 0; i < fileNameList.Count(); i++) {
     Console.WriteLine($"{name} | Failed count {failed_count} | Ok count {ok_count}");
 }
 
-static void PrintDictionary(Dictionary<string, HashSet<string>> dictionary) {
-        foreach (var kvp in dictionary){
-            Console.WriteLine($"Key: {kvp.Key}");
-            Console.WriteLine("Values:");
 
-            foreach (var value in kvp.Value){
-                Console.WriteLine($"  {value}");
-            }
-            Console.WriteLine(""); // Separate key-value pairs with an empty line
-        }
-}
 

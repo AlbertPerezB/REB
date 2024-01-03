@@ -7,7 +7,7 @@ public class ConformanceChecker {
     CSVReader csv;
     XMLreader xml;
     DCRGraph dcr_Graph;
-    int failed_Counter = 0;    
+    int failed_Counter = 0;
 
     public ConformanceChecker(string xml_path, string csv_path) {
         xml = new(xml_path);
@@ -29,6 +29,7 @@ public class ConformanceChecker {
                     if (--count == 0) { // If its the last activity the graph needs to be accepting
                         // System.Console.WriteLine($"activity: {activity}");
                         if (!dcr_Graph.IsAccepting()) {
+                            
                             failed_Counter++; 
                         }
                     }

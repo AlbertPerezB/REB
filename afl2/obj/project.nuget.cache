@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "pYQNBd+b27ch1rX7khogz/BtwWWonWCkJ0RMGKNSfHApUM0mnhWEZ41dWAh2qz8hadVFsODYOmQEzzhq8x5b9A==",
+  "dgSpecHash": "NUKJuL8So1+NwIrmF7cUcy6xaY+4DvNgViaSfNMBX2s8AqBbMPazwa8FuM0AIB6ScpaAR6VhTjXrm9acPY3RqA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Albert\\Documents\\GitHub\\REB\\afl2\\afl2.csproj",
+  "projectFilePath": "C:\\Users\\katja\\OneDrive - University of Copenhagen\\REB\\REB\\afl2\\afl2.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Albert\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512"
+    "C:\\Users\\katja\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512"
   ],
   "logs": []
 }

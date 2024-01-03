@@ -2,8 +2,7 @@ using System.Dynamic;
 
 namespace DCR;
 
-public class DCRGraph
-{
+public class DCRGraph {
     // Events
     public HashSet<string> events = new HashSet<string>();
     // Relations
@@ -16,40 +15,44 @@ public class DCRGraph
     // Marking
     public DCRMarking marking = new();
 
-    public bool Enabled(DCRMarking marking, string activity)
-    {
+    public bool Enabled(DCRMarking marking, string activity) {
         // Open world assumption
         if (!events.Contains(activity)) return true;
 
         // Check included
-        if (!marking.included.Contains(activity)) return false;
+        if (!marking.included.Contains(activity)) {
+            System.Console.WriteLine($"not included: {activity}") ;
+            return false; 
+        }
 
         // If there are included conditions for the activity, check that they have all been executed. 
-        if (conditions_For.ContainsKey(activity))
-        {
+        if (conditions_For.ContainsKey(activity)) {
             // Filter only included conditions.
             HashSet<string> included_Conditions = new HashSet<string>(conditions_For[activity]); // All conditions
             included_Conditions = new HashSet<string>(included_Conditions.Intersect(marking.included));
 
             // Return false if all conditions have not been executed
-            if (!included_Conditions.All(marking.executed.Contains)) return false;
+            if (!included_Conditions.All(marking.executed.Contains)) {
+                System.Console.WriteLine($"condition: {activity}");
+                return false;
+            }
         }
 
-        if (milestones_For.ContainsKey(activity))
-        {
+        if (milestones_For.ContainsKey(activity)) {
             // Select only included milestones
             HashSet<string> included_Milestones = new HashSet<string>(milestones_For[activity]); // All milestones 
             included_Milestones.IntersectWith(marking.included);
 
             // Check if any included milestone has a pending response
-            foreach (string p in marking.pending)
-            {
-                if (included_Milestones.Contains(p)) return false;
+            foreach (string p in marking.pending) {
+                if (included_Milestones.Contains(p)) {
+                    System.Console.WriteLine($"milestone: {activity}");
+                    return false;
+                }
             }
         }
         return true;
     }
-
     public DCRMarking Execute(DCRMarking marking, string activity) {
 
         // Check if the event exists
@@ -89,7 +92,8 @@ public class DCRGraph
     }
 
     public bool IsAccepting() {
-        // Check if there are any included events that are also pending responses
+        // Check if there are any included events that are also pending responses if yes, print them
+        if ((getIncludedPending().Count != 0)) System.Console.WriteLine($"included pending: {string.Join("", getIncludedPending())}");
         return getIncludedPending().Count == 0;
     }
 }
