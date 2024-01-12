@@ -1,6 +1,6 @@
 interface SellerBuyerInterface {
     OneWay:
-        accept( int )
-        reject( int )
+        accept( int ),
+        reject( int ),
         ask ( string )
 }
