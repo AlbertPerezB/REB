@@ -1,9 +1,9 @@
 interface BuyerInterface {
     OneWay:
-        quote( int)
+        quote( int )
 }
 
 interface ShipperInterface {
     OneWay:
-        order( string)
+        order( string )
 }
