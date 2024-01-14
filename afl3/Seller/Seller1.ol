@@ -28,13 +28,13 @@ main {
     {[ask(product)]{
         quote1@Buyer(17)
         println@Console( "Quoted " + product+ " for price 17")()
-        {[accept(order)]{
+        [accept(order)]{
             println@Console( "Order accepted")()
-            order@ShipperSeller(product)
-            exit}}
+            order@ShipperSeller(product)}
         |
-        {[reject(order)]{ 
-            println@Console( "Order not accepted")()}}    
-        }
+        [reject(order)]{ 
+            println@Console( "Order not accepted")()}
+        }    
+        
     }
 }}
