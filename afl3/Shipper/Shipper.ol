@@ -13,7 +13,7 @@ outputPort Buyer {
 }
 
 inputPort ShipperSeller {
-    location: "socket://localhost:8001"
+    location: "socket://localhost:8003"
     protocol: http { format = "json" }
     interfaces: ShipperSellerInterface
 }

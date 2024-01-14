@@ -13,7 +13,7 @@ outputPort Buyer {
 }
 
 outputPort ShipperSeller {
-    location: "socket://localhost:8001"
+    location: "socket://localhost:8003"
     protocol: http { format = "json" }
     interfaces: ShipperInterface
 }
@@ -26,15 +26,15 @@ inputPort SellerBuyer {
 
 main { 
     {[ask(product)]{
-        quote@Buyer(25)
-        println@Console( "Quoted " + product+ " for price 25")()
-        {[accept(order)]
+        quote1@Buyer(17)
+        println@Console( "Quoted " + product+ " for price 17")()
+        {[accept(order)]{
             println@Console( "Order accepted")()
-            order@ShipperSeller(product)}
-        
-        {[reject(order)]}
-            println@Console( "Order not accepted")()
-        }
+            order@ShipperSeller(product)
+            exit}}
+        |
+        {[reject(order)]{ 
+            println@Console( "Order not accepted")()}}    
         }
     }
-}
+}}
