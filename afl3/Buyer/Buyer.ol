@@ -32,13 +32,12 @@ inputPort SellerBuyer {
 }
 
 main {
-    /* Ask for quotes from both Seller1 and Seller2 */
     ask@Seller1("chips") ; [quote1(price1)]{ println@Console("Received 1 quote")()} |
     ask@Seller2("chips") ; [quote2(price2)]{ println@Console("Received 2 quote")()} 
     
     println@Console("Received both quotes")()
     
-    if (price1 < 21 || price2 < 21) {
+    if (price1 < 20 || price2 < 20) {
         if (price1 < price2) {
             accept@Seller1("Ok to buy chips for " + price1) |
             reject@Seller2("Not ok to buy chips for " + price2) ;
