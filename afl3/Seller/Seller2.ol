@@ -26,14 +26,11 @@ inputPort SellerBuyer {
 
 main { 
     {[ask(product)]{
-        quote2@Buyer(25)
-        println@Console( "Quoted " + product + " for price 25")()
-        [accept(order)]{
-            println@Console( "Order accepted")()
-            order@ShipperSeller(product)}
-        |
-        [reject(order)] {
-            println@Console( "Order not accepted")()}
+        quote2@Buyer(22)
+        println@Console( "Quoted " + product + " for price 22")()
+        [accept(order)] {println@Console( "Order accepted")() | order@ShipperSeller(product)}
+        [reject(order)] {println@Console( "Order not accepted")()} 
+            }
         }
     }
-}}
+}
