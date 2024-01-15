@@ -1,13 +1,11 @@
 from SellerShipperServiceInterfaceModule import SellerInterface
 from BuyerServiceInterfaceModule import BuyerShipperInterface, BuyerSellerInterface
-from time import Time
 
 include "console.iol"
 
 service BuyerService {
 
 execution{ single }
-embed Time as Time
 
 outputPort Seller1 {
     location: "socket://localhost:8004"
